@@ -10,7 +10,7 @@
 <title>add board + file</title>
 </head>
 <body>
-	<h1>자료업로드</h1>
+	<h1>PDF자료업로드</h1>
 	<form action="<%=request.getContextPath()%>/addBoardAction.jsp" method="post" enctype="multipart/form-data">
 		<table>
 		<!-- 자료 업로드 제목글 -->
