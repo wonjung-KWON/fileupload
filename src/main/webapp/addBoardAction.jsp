@@ -1,17 +1,17 @@
 <%@page import="javax.naming.spi.DirStateFactory.Result"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.oreilly.servlet.*" %>
-<%@ page import="com.oreilly.servlet.multipart.*" %>
-<%@ page import ="vo.*"%>
+<%@ page import = "com.oreilly.servlet.MultipartRequest" %>
+<%@ page import = "com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
+<%@ page import = "vo.*" %>
 <%@ page import = "java.io.*" %>
 <%@ page import = "java.sql.*" %>
 <%
 	String dir = request.getServletContext().getRealPath("/upload");
 	int max = 10 * 1024 * 1024;
+	System.out.println(dir+"dir");
 	
-	DefaultFileRenamePolicy fp = new DefaultFileRenamePolicy();
 	//request 객체를 MultipartRequest 의 API 를 사용할 수 있도록 랩핑
-	MultipartRequest mRequest = new MultipartRequest(request, dir, max, "utf-8", fp);
+	MultipartRequest mRequest = new MultipartRequest(request, dir, max, "utf-8", new DefaultFileRenamePolicy());
 	
 	//MultipartRequest API를 사용하여 스트림내에서 문자값을 반환할수있다.
 	
@@ -25,6 +25,7 @@
 			f.delete();
 			System.out.println("파일삭제");
 		}
+		response.sendRedirect(request.getContextPath()+"/addBoard.jsp");
 		return;
 	}
 	

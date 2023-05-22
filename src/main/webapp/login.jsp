@@ -1,5 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.net.*" %>
+<%
+String msg = "";
+//세션 확인 : 로그인 되어있으면 못들어오게 막고 메세지와 함께 돌려보낸다	
+if(session.getAttribute("loginMemberId") != null){
+	msg = URLEncoder.encode("로그인되어있습니다","utf-8");
+	response.sendRedirect(request.getContextPath()+"/boardList.jsp?msg="+msg);
+	return;
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +16,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<a href="<%=request.getContextPath()%>/BoardList.jsp">파일 리스트</a>
 		<!-- home 내용 : 로그인폼 / 카테고리별 게시글 5개씩 -->
 			<!-- 로그인 폼 -->
 				<%

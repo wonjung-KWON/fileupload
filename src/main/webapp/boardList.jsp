@@ -36,8 +36,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<%
+			if(session.getAttribute("loginMemberId") == null){// 로그인전이라면 로그인폼출력
+		%>
+			<a href="<%=request.getContextPath()%>/login.jsp">로그인</a>
+		<%
+			}
+		%>
+	<a href="<%=request.getContextPath()%>/addBoard.jsp">파일 추가</a>
 	<h1>PDF 자료 목록</h1>
 	<table>
+		<tr>
+			<td>
+				<%
+				if(request.getParameter("msg") != null){
+				%>
+				<div><%=request.getParameter("msg") %></div>
+				<% 
+				}
+				%>
+			</td>
+   		</tr>
 		<tr>
 			<td>boardTitle</td>
 			<td>originFilename</td>
@@ -48,9 +67,15 @@
 		<tr>
 			<td><%=(String)m.get("boardTitle")%></td>
 			<td>
-				<a href="<%=request.getContextPath()%><%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("originFilename")%>">
+				<a href="<%=request.getContextPath()%><%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
 					<%=(String)m.get("originFilename")%>
 				</a>
+			</td>
+			<td>
+				<a href="<%=request.getContextPath()%>/modifyBoard.jsp">수정</a>
+			</td>
+			<td>
+				<a href="<%=request.getContextPath()%>/removeBoard.jsp">삭제</a>
 			</td>
 		</tr>
 		<%

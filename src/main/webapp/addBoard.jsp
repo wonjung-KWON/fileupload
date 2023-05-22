@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.net.*" %>
 <%
-	//String memberId = (String)session.getAttribute("loginMemberId");
-	String memberId = "test";
+//세션 확인 : 로그인 되어있으면 못들어오게 막고 메세지와 함께 돌려보낸다	
+	String msg = "";
+	if(session.getAttribute("loginMemberId") == null){
+		msg = URLEncoder.encode("로그인해주시길바랍니다","utf-8");
+		response.sendRedirect(request.getContextPath()+"/boardList.jsp?msg="+msg);
+		return;
+	}
+	String memberId = (String)session.getAttribute("loginMemberId");
+	
 %>
 <!DOCTYPE html>
 <html>
