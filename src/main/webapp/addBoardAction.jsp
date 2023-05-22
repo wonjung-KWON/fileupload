@@ -8,7 +8,7 @@
 <%
 	String dir = request.getServletContext().getRealPath("/upload");
 	int max = 10 * 1024 * 1024;
-	System.out.println(dir+"dir");
+	System.out.println(dir+"<--dir");
 	
 	//request 객체를 MultipartRequest 의 API 를 사용할 수 있도록 랩핑
 	MultipartRequest mRequest = new MultipartRequest(request, dir, max, "utf-8", new DefaultFileRenamePolicy());
@@ -87,7 +87,7 @@
 	}
 
 	String fileSql = null;
-	fileSql = "INSERT INTO board_file(board_no, origin_filename, save_filename, type, path, createdate) VALUES(?, ?, ?, ?, '.upload', NOW())";
+	fileSql = "INSERT INTO board_file(board_no, origin_filename, save_filename, type, path, createdate) VALUES(?, ?, ?, ?, 'upload', NOW())";
 	PreparedStatement fileStmt = conn.prepareStatement(fileSql);
 	fileStmt.setInt(1, boardNo);
 	fileStmt.setString(2, originFilename);

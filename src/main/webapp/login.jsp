@@ -16,7 +16,7 @@ if(session.getAttribute("loginMemberId") != null){
 <title>Insert title here</title>
 </head>
 <body>
-		<a href="<%=request.getContextPath()%>/BoardList.jsp">파일 리스트</a>
+		<a href="<%=request.getContextPath()%>/boardList.jsp">파일 리스트</a>
 		<!-- home 내용 : 로그인폼 / 카테고리별 게시글 5개씩 -->
 			<!-- 로그인 폼 -->
 				<%
