@@ -7,6 +7,7 @@
 	FROM board b INNER JOIN board_file f ON b.board_no = f.board_no 
 	ORDER BY b.createdate DESC";
 */
+//세션정보 변수에저장
 	String driver="org.mariadb.jdbc.Driver";
 	String dbUrl = "jdbc:mariadb://127.0.0.1:3306/fileupload";
 	String dbId = "root"; 
@@ -22,6 +23,7 @@
 	ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 	while(rs.next()){
 		HashMap<String, Object> m = new HashMap<>();
+		
 		m.put("boardNo", rs.getInt("boardNo"));
 		m.put("boardTitle", rs.getString("boardTitle"));
 		m.put("boardFileNo", rs.getInt("boardFileNo"));
@@ -42,6 +44,7 @@
 			if(session.getAttribute("loginMemberId") == null){// 로그인전이라면 로그인폼출력
 		%>
 			<a href="<%=request.getContextPath()%>/login.jsp">로그인</a>
+			<a href="<%=request.getContextPath()%>/insert_member/insertMember.jsp">회원가입</a>
 		<%
 			}
 		%>
@@ -77,7 +80,7 @@
 				<a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a>
 			</td>
 			<td>
-				<a href="<%=request.getContextPath()%>/removeBoard.jsp">삭제</a>
+				<a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a>
 			</td>
 		</tr>
 		<%
