@@ -7,7 +7,6 @@
 	FROM board b INNER JOIN board_file f ON b.board_no = f.board_no 
 	ORDER BY b.createdate DESC";
 */
-//세션정보 변수에저장
 	String driver="org.mariadb.jdbc.Driver";
 	String dbUrl = "jdbc:mariadb://127.0.0.1:3306/fileupload";
 	String dbId = "root"; 
@@ -45,6 +44,14 @@
 		%>
 			<a href="<%=request.getContextPath()%>/login.jsp">로그인</a>
 			<a href="<%=request.getContextPath()%>/insert_member/insertMember.jsp">회원가입</a>
+		<%
+			}
+		%>
+		<%
+			if(session.getAttribute("loginMemberId") != null){// 로그인되어있다면 로그아웃 보여주기
+		%>
+	<a href="<%=request.getContextPath()%>/logoutAciton.jsp">로그아웃</a>
+	
 		<%
 			}
 		%>
