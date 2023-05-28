@@ -13,7 +13,7 @@
 	//요청값 디버깅 확인.
 	System.out.println(request.getParameter("memberId")+"<-- loginAction memberId");
 	System.out.println(request.getParameter("memberPw")+"<-- loginAction memberPw");
-	
+	//요청값 유효성 체크하고 변수에 저장
 	String memberId = "";
 	if(request.getParameter("memberId") != null){
 		memberId = request.getParameter("memberId");
@@ -23,6 +23,7 @@
 	if(request.getParameter("memberPw") != null){
 		memberPw = request.getParameter("memberPw");
 	}
+	// 요청값 받아온 변수를 클래스타입에 저장
 	Member paramMember = new Member();
 	paramMember.setMemberId(memberId);
 	paramMember.setMemberPw(memberPw);

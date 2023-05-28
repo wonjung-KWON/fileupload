@@ -11,8 +11,9 @@
 		response.sendRedirect(request.getContextPath()+"/boardList.jsp?msg="+msg);
 		return;
 	}
-	
+	// 세션값 변수에 저장
 	String memberId = (String)session.getAttribute("loginMemberId");
+	// 요청값 유효성 확인 if문으로 활용
 	if(request.getParameter("boardNo") == null 
 			|| request.getParameter("boardNo").equals("")
 			|| request.getParameter("boardFileNo") == null 
@@ -23,19 +24,11 @@
 	}
 		
 	
+	//요청값 새로운 변수에 저장
+	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+	int boardFileNo = Integer.parseInt(request.getParameter("boardFileNo"));
 	
-	int boardNo = 0;
-	if(request.getParameter("boardNo") != null 
-			|| request.getParameter("boardNo").equals("")){
-		boardNo = Integer.parseInt(request.getParameter("boardNo"));
-	}
-	int boardFileNo = 0;
-	if(request.getParameter("boardFileNo") != null 
-			|| request.getParameter("boardFileNo").equals("")){
-		boardFileNo = Integer.parseInt(request.getParameter("boardFileNo"));
-	}
-	
-	
+	// 디비 연결 
 	String driver="org.mariadb.jdbc.Driver";
 	String dbUrl = "jdbc:mariadb://127.0.0.1:3306/fileupload";
 	String dbId = "root"; 

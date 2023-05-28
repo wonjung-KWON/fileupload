@@ -3,6 +3,7 @@
 <%@ page import = "java.net.*" %>
 <%@ page import = "java.util.*" %>
 <%
+	// 로그인 안되어있으면 못들어오게 하는 if문활용
 	if(session.getAttribute("loginMemberId") != null){
 		response.sendRedirect(request.getContextPath()+"/boardList.jsp");
 		return;

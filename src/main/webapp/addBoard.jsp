@@ -8,6 +8,7 @@
 		response.sendRedirect(request.getContextPath()+"/boardList.jsp?msg="+msg);
 		return;
 	}
+	//세션에 있는 로그인 아이디 변수에 저장 테이블에서 재사용하기위해
 	String memberId = (String)session.getAttribute("loginMemberId");
 	
 %>

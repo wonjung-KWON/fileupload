@@ -11,6 +11,7 @@
 		response.sendRedirect(request.getContextPath()+"/boardList.jsp?msg="+msg);
 		return;
 	}
+	//요청값과 세션값 변수에 저장
 	String memberId = (String)session.getAttribute("loginMemberId");
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 	int boardFileNo = Integer.parseInt(request.getParameter("boardFileNo"));

@@ -6,8 +6,11 @@
 <%@ page import = "java.io.*" %>
 <%@ page import = "java.sql.*" %>
 <%
+	//외부 API에 사용할 값 변수에 저장
 	String dir = request.getServletContext().getRealPath("/upload");
+	// 설장할 파일 크기 최대값 변수에 저장하기
 	int max = 10 * 1024 * 1024;
+	//디버깅
 	System.out.println(dir+"<--dir");
 	
 	//request 객체를 MultipartRequest 의 API 를 사용할 수 있도록 랩핑
@@ -15,16 +18,18 @@
 	
 	//MultipartRequest API를 사용하여 스트림내에서 문자값을 반환할수있다.
 	
-	//업로드 파일이 PDF파일이 아니면
+	//업로드 파일이 PDF파일이 아니면 받아온 파일 지우기위해 분기
 	if(mRequest.getContentType("boardFile").equals("application/pdf") == false){
 		// 이미저장된 파일을 삭제
 		System.out.println("PDF파일이 아닙니다");
+		//저장한 파일 이름 변수에 스트링 타입으로 저장
 		String saveFilename = mRequest.getFilesystemName("boardFile");	
 		File f = new File(dir+"/"+saveFilename); // new File(실제위치"d:/abc/upload/+"") \\ 이두개가 \하나다 \하나만 적으면 특수문자이므로 에러
 		if(f.exists()){
 			f.delete();
 			System.out.println("파일삭제");
 		}
+		// 다시 입력한한 페이지로 이동
 		response.sendRedirect(request.getContextPath()+"/addBoard.jsp");
 		return;
 	}
